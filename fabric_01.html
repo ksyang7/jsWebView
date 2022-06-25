@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <!-- Adding the Fabric JS Library-->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/510/fabric.min.js"></script>
+</head>
+<body>
+   <h2>Disabling the selection of objects on a canvas</h2>
+   <p> Here you cannot select an area around the object as the selection key is set to False.</p>
+   <canvas id="canvas"></canvas>
+   <script>
+      //Initiate a canvas instance
+      var canvas = new fabric.Canvas("canvas", {
+         selection: false
+      });
+      //creating an instance of the fabric.Circle class
+      var cir = new fabric.Circle({
+         radius: 40,
+         fill: "#87a96b",
+         left: 30,
+         top: 20,
+      });
+      //adding it to the canvas
+      canvas.add(cir);
+      canvas.setWidth(document.body.scrollWidth);
+      canvas.setHeight(1000);
+   </script>
+</body>
+</html>

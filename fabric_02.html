@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <!-- Adding the Fabric JS Library-->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/510/fabric.min.js"></script>
+</head>
+<body>
+   <h2>Disabling the selection of objects on a canvas</h2>
+   <p>Here you can select the object as the selection key is True</p>
+   <canvas id="canvas"></canvas>
+   <script>
+      (function() {
+         var canvas = this.__canvas = new fabric.Canvas('c');
+         fabric.Object.prototype.transparentCorners = false;
+
+         canvas.on('mouse:over', function(e) {
+            e.target.set('fill', 'red');
+            canvas.renderAll();
+         });
+
+         canvas.on('mouse:out', function(e) {
+            e.target.set('fill', 'green');
+            canvas.renderAll();
+         });
+
+         // add random objects
+         for (var i = 15; i--; ) {
+            var dim = fabric.util.getRandomInt(30, 60);
+            var klass = ['Rect', 'Triangle', 'Circle'][fabric.util.getRandomInt(0,2)];
+            var options = {
+               top: fabric.util.getRandomInt(0, 600),
+               left: fabric.util.getRandomInt(0, 600),
+               fill: 'green'
+            };
+            if (klass === 'Circle') {
+               options.radius = dim;
+            }
+            else {
+               options.width = dim;
+               options.height = dim;
+            }
+            canvas.add(new fabric[klass](options));
+         }
+         })();
+   </script>
+</body>
+</html>
