@@ -32,14 +32,16 @@
             androidMessage.value = "";
         }
 
-
+        
         // js 에서 ios 호출할 메소드
         function jsToNativeEventCall() {
             let messageToSend = document.getElementById("messageToSend");
             const sendData = { message: messageToSend.value };
-            alert("jsToNativeEventCall-sendData : " + sendData);
+            // for (let value of Object.values(sendData)) {
+            //     alert(value); 
+            // }
             try {
-                window.webkit.messageHandlers.callbackHandler.postMessage(sendData);
+                window.webkit.messageHandler.callbackHandler.postMessage(sendData);
                 messageToSend.value = "";
             } catch (err) {
                 alert(err);
